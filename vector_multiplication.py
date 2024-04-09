@@ -25,9 +25,16 @@ class VectorMultiplication(Scene):
         self.wait(2)
 
         # Dot Product
-        dot_product_explain = Text("Dot Product of Vectors", font_size=36)
+        dot_product_explain = Text("Dot Product of Vectors", font_size=36).to_edge(UP)
         self.play(ReplacementTransform(vector_label1, dot_product_explain))
         self.wait(2)
+
+        self.play(
+            vector1.animate.shift(DOWN * 2),
+            vector2.animate.shift(DOWN * 2),
+            vector_label1.animate.next_to(vector1, RIGHT),
+            vector_label2.animate.next_to(vector2, RIGHT)
+        )
 
         dot_formula = MathTex("\\vec{a} \\cdot \\vec{b} = |\\vec{a}| |\\vec{b}| \\cos(\\theta)")
         self.play(Write(dot_formula))
